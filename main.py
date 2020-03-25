@@ -146,20 +146,18 @@ class Simulation():
             if(self.log['infected'][-1]==0):
                 break
 
+if __name__=="__main__":
+    poland = Country()
+    virus  = Virus()
+    sim    = Simulation(poland,virus)
+    sim.simulate()
 
-# def main():
-poland = Country()
-virus  = Virus()
-sim    = Simulation(poland,virus)
-sim.simulate()
 
-
-plt.figure()
-plt.plot(sim.log["time"],sim.log["healthy"])
-plt.plot(sim.log["time"],sim.log["infected"])
-plt.plot(sim.log["time"],sim.log["dead"])
-plt.plot(sim.log["time"],sim.log["recovered"])
-plt.legend(("healthy","infected","dead","recovered"))
-plt.show()
-# if __name__=="__main__":
-    # main()
+    plt.figure()
+    plt.plot(sim.log["time"],sim.log["healthy"])
+    plt.plot(sim.log["time"],sim.log["infected"])
+    plt.plot(sim.log["time"],sim.log["dead"])
+    plt.plot(sim.log["time"],sim.log["recovered"])
+    plt.legend(("healthy","infected","dead","recovered"))
+    plt.show()
+    
