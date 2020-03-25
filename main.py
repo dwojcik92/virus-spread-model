@@ -26,7 +26,7 @@ class Country():
 
 
 class Virus():
-    IT = 5    # average incubation time
+    IT = 7    # average incubation time
     HT = 21  # average heal time
     R0 = 2.3  # basic reproduction number
     DC = 0.03 # death chance
@@ -122,7 +122,7 @@ class Simulation():
             new_infections = 0
             for p in self.people:
                 if p.can_infect():
-                    new_infections += self.virus.R0*(np.exp(-self.time/20))
+                    new_infections += self.virus.R0*(np.exp(-self.time/self.virus.HT))
 
             new_infections = np.floor(new_infections)
             for p in self.people:
@@ -138,7 +138,7 @@ class Simulation():
 
             # after a 1 week engage social isolation:
             if(self.time>=7):
-                self.virus.update(0.1)
+                self.virus.R0 = self.virus.R0/4
 
             self.time +=1
             self.get_stats()
